@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+package image_reciever;
+
+service ImageReciever{
+  rpc SendImage(KinectImage) returns (google.protobuf.Empty) {};
+  rpc SayHello (HelloRequest) returns (HelloReply) {};
+}
+
+message KinectImage {
+  google.protobuf.Timestamp ts = 1;
+
+  bytes rgb_img = 2;
+  int32 rgb_height = 3;
+  int32 rgb_width = 4;
+
+  bytes depth_img = 5;
+  int32 depth_height = 6;
+  int32 depth_width = 7;
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
